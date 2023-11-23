@@ -71,6 +71,11 @@
             <artifactId>guava</artifactId>
             <version>23.0</version>
         </dependency>
+        <!-- mongoDB-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
         <!--MySQL JDBC驱动-->
         <dependency>
             <groupId>mysql</groupId>
