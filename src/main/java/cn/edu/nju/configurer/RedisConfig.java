@@ -1,4 +1,4 @@
-package cn.edu.nju;
+package cn.edu.nju.configurer;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;

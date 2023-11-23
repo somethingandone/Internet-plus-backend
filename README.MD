@@ -1,3 +1,5 @@
 后端测试。
 需要配置数据库
-需要启动Redis
+mysql
+mongodb
+登录注册需要启动Redis
