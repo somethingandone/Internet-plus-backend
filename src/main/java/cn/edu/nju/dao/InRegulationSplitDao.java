@@ -14,9 +14,9 @@ import java.util.Set;
 @Repository
 public class InRegulationSplitDao {
     @Autowired
-    public MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
 
-    public List<InRegulationSplit> getInRegulationByKeywords(Set<String> keywords){
+    public List<InRegulationSplit> getInRegulationByKeywords(List<String> keywords){
         Query query = new Query();
         String[] keywordsArray = keywords.toArray(new String[0]);
         TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(String.join(" ",keywordsArray));

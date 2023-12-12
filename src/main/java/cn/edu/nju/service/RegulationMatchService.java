@@ -10,5 +10,5 @@ import java.util.List;
  * 完成分词、计算TF-IDF相似度
  */
 public interface RegulationMatchService {
-    List<MatchItem> retrieval(RegulationRetrievalVO regulationRetrievalVO);
+    List<MatchItem> retrieval(RegulationRetrievalVO regulationRetrievalVO) throws Exception;
 }

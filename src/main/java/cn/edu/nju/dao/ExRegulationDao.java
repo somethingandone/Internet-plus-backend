@@ -1,6 +1,6 @@
 package cn.edu.nju.dao;
 
-import cn.edu.nju.model.InRegulation;
+import cn.edu.nju.model.ExRegulation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,15 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class InRegulationDao {
+public class ExRegulationDao {
     @Autowired
     private MongoTemplate mongoTemplate;
-
-    public List<InRegulation> findAll(){
-        return mongoTemplate.findAll(InRegulation.class);
-    }
-
-    public void save(InRegulation inRegulation){
-        mongoTemplate.save(inRegulation);
+    public List<ExRegulation> findAll(){
+        return mongoTemplate.findAll(ExRegulation.class);
     }
 }

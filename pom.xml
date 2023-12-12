@@ -21,6 +21,12 @@
     </parent>
 
     <dependencies>
+        <!--        分词-->
+        <dependency>
+            <groupId>com.huaban</groupId>
+            <artifactId>jieba-analysis</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!--Spring Boot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -165,19 +171,19 @@
     </build>
 
     <repositories>
-        <repository>
-            <id>aliyun-repos</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
+<!--        <repository>-->
+<!--            <id>aliyun-repos</id>-->
+<!--            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>aliyun-plugin</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

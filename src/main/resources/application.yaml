@@ -1,6 +1,7 @@
 match:
-  topK: 5
-  resultLimit: 20
+  topK: 10
+  resultLimit: 50
+  stopWords: "resources/stopwords.txt"
 server:
   port: 3456
 spring:

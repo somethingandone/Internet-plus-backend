@@ -16,7 +16,7 @@ public class InRegulationSplitDaoTest extends Tester{
 
     @Test
     public void test1(){
-        Set<String> ss = new HashSet<>();
+        List<String> ss = new ArrayList<>();
         ss.add("业务管理");
         List<InRegulationSplit> res = inRegulationSplitDao.getInRegulationByKeywords(ss);
         System.out.println(res.size());

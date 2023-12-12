@@ -1,10 +1,23 @@
 package cn.edu.nju.utils;
 
+import com.huaban.analysis.jieba.JiebaSegmenter;
+import com.huaban.analysis.jieba.SegToken;
+import org.apache.cxf.helpers.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class VSMUtil {
+    public static final JiebaSegmenter segmenter = new JiebaSegmenter();
+    static List<String> stopWords = new ArrayList<>();
+
+    private static String stopWordsPath = "src/main/resources/stopwords.txt";
+
     /**
      * cosine
      * 计算向量余弦
@@ -27,47 +40,55 @@ public class VSMUtil {
         }
         magnitude1 = (float) Math.sqrt(magnitude1);
         magnitude2 = (float) Math.sqrt(magnitude2);
-        return dotProduct/(magnitude1*magnitude2);
+        float res = dotProduct/(magnitude1*magnitude2);
+        if(Float.isNaN(res)){
+            return 0;
+        }
+        if(res > 0.8f){
+            System.out.println(vec1);
+        }
+        return res;
     }
 
-    /**
-     * getIDF
-     * 获取指定词语的idf。如果有则直接从数据库拿。
-     * 如果没有，则计算idf并存入数据库
-     * @param word description
-     * @return float
-     * @author haofeng.Yu
-     */
-    public static float getIDF(String word){
-        //TODO @何青云 获取指定词语的idf。如果有则直接从数据库拿。 如果没有，则计算idf并存入数据库
-        return 0;
-    }
 
     /**
-     * getKeyword
-     * 注意，这里是对待匹配的文本，也就是外规的一段进行分词。
-     * 1.可以考虑采用textrank分词，这种分词方式不依赖语料库，而是上下文。但是最终要记录权重值得分
-     * 我不确定这两种方式的权重得分是否会有很大差距导致结果不同，可以查一查资料
-     * 2.也可考虑使用tf-idf分词。词频词库应该已经记录好，所以只需要计算本文中所有词语的tf即可，提取其中值最高的n项。
-     * @param text 文本
-     * @param K 关键词的个数
-     * @return Map<String, Float> 词语: 得分(tf-idf值)
-     * @author haofeng.Yu
-     */
-    public static Map<String, Float> getKeyword(String text, int K){
-        //TODO @胡国栋 分词并获取关键词及其tfidf得分 建议和下面的getWordFrequency抽象一个分词函数
-        return null;
-    }
-
-    /**
-     * getWordFrequency
-     * 先对content进行分词，再计算词频
-     * @param content 待计算的文本
+     * wordCount
+     * 先对text进行分词，再计算词频
+     * @param text 待计算的文本
      * @return java.util.HashMap<java.lang.String,java.lang.Integer> 词语：词频
      * @author haofeng.Yu
      */
-    public static HashMap<String, Integer> getWordFrequency(String content){
-        //TODO @胡国栋 先对content进行分词，再计算词频 建议和上面的getKeyword抽象一个分词函数
-        return null;
+    public static Map<String, Integer> wordCount(String text) throws Exception {
+        //TODO checked @胡国栋 先对content进行分词，再计算词频 建议和上面的getKeyword抽象一个分词函数
+        List<String> words = segmentAccurate(text);
+        Map<String, Integer> wordCount = new HashMap<>();
+        words.forEach(word->{
+            if(wordCount.containsKey(word)){
+                wordCount.replace(word, wordCount.get(word)+1);
+            }else{
+                wordCount.put(word, 1);
+            }
+        });
+        return wordCount;
+    }
+
+    public static void init() throws Exception {
+        stopWords = FileUtils.readLines(new File(stopWordsPath));
+    }
+
+    public static List<String> segment(String text) throws Exception {
+        if(stopWords.size() == 0){
+            init();
+        }
+        List<SegToken> words = segmenter.process(text, JiebaSegmenter.SegMode.INDEX);
+        return words.stream().filter(word -> !stopWords.contains(word.word)).map(word -> word.word).collect(Collectors.toList());
+    }
+
+    public static List<String> segmentAccurate(String text) throws Exception {
+        if(stopWords.size() == 0){
+            init();
+        }
+        List<SegToken> words = segmenter.process(text, JiebaSegmenter.SegMode.SEARCH);
+        return words.stream().filter(word -> !stopWords.contains(word.word)).map(word -> word.word).collect(Collectors.toList());
     }
 }
