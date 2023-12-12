@@ -8,5 +8,6 @@ import lombok.Data;
 @Data
 public class RegulationRetrievalVO {
     int id;
+    String title;
     String text;
 }

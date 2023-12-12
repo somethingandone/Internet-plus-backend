@@ -1,5 +1,6 @@
 match:
   topK: 5
+  resultLimit: 20
 server:
   port: 3456
 spring:
