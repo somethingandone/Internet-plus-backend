@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Id;
@@ -20,4 +21,7 @@ public class InRegulationSplit {
     private String title;
 
     private String itemContent;
+
+    @TextIndexed
+    private String _words;
 }
