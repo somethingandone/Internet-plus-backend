@@ -49,7 +49,8 @@ public class VSMUtil {
      * 1.可以考虑采用textrank分词，这种分词方式不依赖语料库，而是上下文。但是最终要记录权重值得分
      * 我不确定这两种方式的权重得分是否会有很大差距导致结果不同，可以查一查资料
      * 2.也可考虑使用tf-idf分词。词频词库应该已经记录好，所以只需要计算本文中所有词语的tf即可，提取其中值最高的n项。
-     * @param text description
+     * @param text 文本
+     * @param K 关键词的个数
      * @return Map<String, Float> 词语: 得分(tf-idf值)
      * @author haofeng.Yu
      */
