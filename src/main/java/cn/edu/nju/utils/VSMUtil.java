@@ -44,9 +44,9 @@ public class VSMUtil {
         if(Float.isNaN(res)){
             return 0;
         }
-        if(res > 0.8f){
-            System.out.println(vec1);
-        }
+//        if(res > 0.8f){
+//            System.out.println(vec1);
+//        }
         return res;
     }
 
