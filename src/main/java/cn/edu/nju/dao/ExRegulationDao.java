@@ -14,4 +14,7 @@ public class ExRegulationDao {
     public List<ExRegulation> findAll(){
         return mongoTemplate.findAll(ExRegulation.class);
     }
+    public void save(ExRegulation exRegulation){
+        mongoTemplate.save(exRegulation);
+    }
 }

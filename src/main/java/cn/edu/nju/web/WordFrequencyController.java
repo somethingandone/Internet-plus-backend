@@ -5,10 +5,7 @@ import cn.edu.nju.model.WordFrequency;
 import cn.edu.nju.service.WordFrequencyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -46,7 +43,7 @@ public class WordFrequencyController {
         return ResultGenerator.genSuccessResult(wordFrequency);
     }
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<WordFrequency> list = wordFrequencyService.findAll();

@@ -21,5 +21,6 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 操作方法：
-示例见Test中的MatchTest
-获取idf数据和词频数据需要跑一次WordFrequencyTest
+
+1.获取idf数据和词频数据需要跑一次WordFrequencyTest
+2.示例见Test中的MatchTest

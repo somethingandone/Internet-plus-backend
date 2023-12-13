@@ -3,6 +3,8 @@ package cn.edu.nju.service;
 import cn.edu.nju.model.VO.InRegulationMatchVO;
 import cn.edu.nju.model.VO.MatchItem;
 import cn.edu.nju.model.VO.RegulationRetrievalVO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
