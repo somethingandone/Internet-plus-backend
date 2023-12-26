@@ -20,7 +20,9 @@ import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 /**
  * 完成分词、计算TF-IDF相似度
  */
@@ -47,6 +49,8 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
     static final int max_iter = 200;
     static final float min_diff = 0.001f;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     /**
      * retrieval
      * 匹配一段文本，并返回待匹配结果的列表
@@ -178,7 +182,14 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
      */
     public boolean getRelevance(String exRegulationName, String inRegulationName){
         //TODO  @何青云 根据标注结果获取两篇文章是否相关（参考群里杨昭彤发的sql）
-        return false;
+        // 查询SQL语句
+        String query = "SELECT * FROM relation WHERE ex_regulation_name = ? AND in_regulation_name = ?";
+
+        // 执行查询
+        Integer count = jdbcTemplate.queryForObject(query, Integer.class, exRegulationName, inRegulationName);
+
+        // 如果查询结果不为null且大于0，则说明存在关联关系
+        return count != null && count > 0;
     }
 
     /**
