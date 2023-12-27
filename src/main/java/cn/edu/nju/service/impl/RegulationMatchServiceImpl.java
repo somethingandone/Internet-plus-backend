@@ -183,7 +183,7 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
     public boolean getRelevance(String exRegulationName, String inRegulationName){
         //TODO  @何青云 根据标注结果获取两篇文章是否相关（参考群里杨昭彤发的sql）
         // 查询SQL语句
-        String query = "SELECT * FROM relation WHERE ex_regulation_name = ? AND in_regulation_name = ?";
+        String query = "SELECT * FROM relation WHERE exRegulation = ? AND inRegulation = ?";
 
         // 执行查询
         Integer count = jdbcTemplate.queryForObject(query, Integer.class, exRegulationName, inRegulationName);
