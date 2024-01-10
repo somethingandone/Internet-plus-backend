@@ -2,13 +2,13 @@ spring:
   data:
     #mongoDB
     mongodb:
-      host: 127.0.0.1
-      database: risk
-      port: 27017
+      uri: mongodb://some:123456@121.36.55.63:27017/risk
+
+
   datasource:
-    url: jdbc:mysql://localhost:3306/wanted?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: yy815920
+    url: jdbc:mysql://121.36.55.63:3306/internet?useSSL=false
+    username: Internet
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
   redis:
