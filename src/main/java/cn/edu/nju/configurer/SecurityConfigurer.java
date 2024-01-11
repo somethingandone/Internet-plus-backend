@@ -1,5 +1,6 @@
 package cn.edu.nju.configurer;
 
+import cn.edu.nju.utils.CORSFilter;
 import cn.edu.nju.utils.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Autowired
+    CORSFilter corsFilter;
     /**
      * 创建密码加密的Bean
      * @return org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -42,7 +45,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/sign_in").anonymous()
                 .antMatchers("/user/register").permitAll()
                 .anyRequest().authenticated();
-        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class).addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);
     }
 
     /**

@@ -20,6 +20,7 @@ public abstract class AbstractMongoService<T> {
         mongoDao.insertList(models);
     }
 
+    public long count() {return mongoDao.count();}
 
     public void deleteById(String ids) {
         mongoDao.deleteByPrimaryKey(ids);
