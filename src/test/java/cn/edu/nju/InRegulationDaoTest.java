@@ -1,14 +1,14 @@
 package cn.edu.nju;
 
 import cn.edu.nju.model.InRegulation;
-import cn.edu.nju.service.InRegulationService;
+import cn.edu.nju.service.impl.InRegulationServiceImpl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class InRegulationDaoTest extends Tester{
 
     @Autowired
-    InRegulationService inRegulationService;
+    InRegulationServiceImpl inRegulationService;
 
     @Test
     public void insertSingle(){
