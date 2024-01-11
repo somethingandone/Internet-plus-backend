@@ -48,7 +48,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String token = authorization.split(" ")[1];//从请求头获取token
+        String token = authorization.split(" ")[0];//从请求头获取token
         //解析token
         String id;
         try{
