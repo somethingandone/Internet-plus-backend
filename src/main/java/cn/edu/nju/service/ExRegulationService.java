@@ -7,4 +7,5 @@ import java.util.List;
 public interface ExRegulationService {
     void save(ExRegulation exRegulation);
     List<ExRegulation> findAll();
+    int count(ExRegulation exRegulation);
 }

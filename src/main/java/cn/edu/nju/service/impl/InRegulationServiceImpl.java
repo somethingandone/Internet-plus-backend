@@ -1,5 +1,6 @@
 package cn.edu.nju.service.impl;
 
+import cn.edu.nju.core.AbstractMongoService;
 import cn.edu.nju.dao.InRegulationDao;
 import cn.edu.nju.model.InRegulation;
 import cn.edu.nju.service.InRegulationService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class InRegulationServiceImpl implements InRegulationService {
+public class InRegulationServiceImpl extends AbstractMongoService<InRegulation> implements InRegulationService {
 
     @Resource
     InRegulationDao inRegulationDao;
@@ -25,5 +26,10 @@ public class InRegulationServiceImpl implements InRegulationService {
     @Override
     public List<InRegulation> findAll() {
         return inRegulationDao.findAll();
+    }
+
+    @Override
+    public int count(InRegulation inRegulation) {
+        return Math.toIntExact(inRegulationDao.selectCount(inRegulation));
     }
 }

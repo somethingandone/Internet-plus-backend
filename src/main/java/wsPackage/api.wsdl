@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.nju.edu.cn" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BankPolicyWebServiceImplService" targetNamespace="http://webservice.nju.edu.cn">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.nju.edu.cn" elementFormDefault="unqualified" targetNamespace="http://webservice.nju.edu.cn" version="1.0">
+
+  <xs:element name="exRegulation_count" type="tns:exRegulation_count"/>
+
+  <xs:element name="exRegulation_countResponse" type="tns:exRegulation_countResponse"/>
+
+  <xs:element name="exRegulation_getById" type="tns:exRegulation_getById"/>
+
+  <xs:element name="exRegulation_getByIdResponse" type="tns:exRegulation_getByIdResponse"/>
+
+  <xs:element name="exRegulation_list" type="tns:exRegulation_list"/>
+
+  <xs:element name="exRegulation_listResponse" type="tns:exRegulation_listResponse"/>
+
+  <xs:element name="hello" type="tns:hello"/>
+
+  <xs:element name="helloResponse" type="tns:helloResponse"/>
+
+  <xs:element name="inRegulation_count" type="tns:inRegulation_count"/>
+
+  <xs:element name="inRegulation_countResponse" type="tns:inRegulation_countResponse"/>
+
+  <xs:element name="inRegulation_getById" type="tns:inRegulation_getById"/>
+
+  <xs:element name="inRegulation_getByIdResponse" type="tns:inRegulation_getByIdResponse"/>
+
+  <xs:element name="inRegulation_list" type="tns:inRegulation_list"/>
+
+  <xs:element name="inRegulation_listResponse" type="tns:inRegulation_listResponse"/>
+
+  <xs:complexType name="inRegulation_getById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation_getByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:inRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="department" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation_list">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation_listResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:inRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_count">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exRegulation" type="tns:exRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="abstractContent" type="xs:string"/>
+      <xs:element minOccurs="0" name="agencyTypeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="builddate" type="xs:string"/>
+      <xs:element minOccurs="0" name="docId" type="xs:string"/>
+      <xs:element minOccurs="0" name="docSubtitle" type="xs:string"/>
+      <xs:element minOccurs="0" name="documentNo" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="indexNo" type="xs:string"/>
+      <xs:element minOccurs="0" name="interviewTypeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="text" type="xs:string"/>
+      <xs:element minOccurs="0" name="title" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_countResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation_count">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inRegulation" type="tns:inRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inRegulation_countResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hello">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_getById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_getByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:exRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_list">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="exRegulation_listResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:exRegulation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="inRegulation_countResponse">
+    <wsdl:part element="tns:inRegulation_countResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="helloResponse">
+    <wsdl:part element="tns:helloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inRegulation_getByIdResponse">
+    <wsdl:part element="tns:inRegulation_getByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_count">
+    <wsdl:part element="tns:exRegulation_count" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inRegulation_count">
+    <wsdl:part element="tns:inRegulation_count" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_countResponse">
+    <wsdl:part element="tns:exRegulation_countResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hello">
+    <wsdl:part element="tns:hello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_getById">
+    <wsdl:part element="tns:exRegulation_getById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_list">
+    <wsdl:part element="tns:exRegulation_list" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inRegulation_listResponse">
+    <wsdl:part element="tns:inRegulation_listResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_listResponse">
+    <wsdl:part element="tns:exRegulation_listResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inRegulation_getById">
+    <wsdl:part element="tns:inRegulation_getById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inRegulation_list">
+    <wsdl:part element="tns:inRegulation_list" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exRegulation_getByIdResponse">
+    <wsdl:part element="tns:exRegulation_getByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BankPolicyService">
+    <wsdl:operation name="inRegulation_getById">
+      <wsdl:input message="tns:inRegulation_getById" name="inRegulation_getById">
+    </wsdl:input>
+      <wsdl:output message="tns:inRegulation_getByIdResponse" name="inRegulation_getByIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inRegulation_list">
+      <wsdl:input message="tns:inRegulation_list" name="inRegulation_list">
+    </wsdl:input>
+      <wsdl:output message="tns:inRegulation_listResponse" name="inRegulation_listResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_count">
+      <wsdl:input message="tns:exRegulation_count" name="exRegulation_count">
+    </wsdl:input>
+      <wsdl:output message="tns:exRegulation_countResponse" name="exRegulation_countResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inRegulation_count">
+      <wsdl:input message="tns:inRegulation_count" name="inRegulation_count">
+    </wsdl:input>
+      <wsdl:output message="tns:inRegulation_countResponse" name="inRegulation_countResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hello">
+      <wsdl:input message="tns:hello" name="hello">
+    </wsdl:input>
+      <wsdl:output message="tns:helloResponse" name="helloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_getById">
+      <wsdl:input message="tns:exRegulation_getById" name="exRegulation_getById">
+    </wsdl:input>
+      <wsdl:output message="tns:exRegulation_getByIdResponse" name="exRegulation_getByIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_list">
+      <wsdl:input message="tns:exRegulation_list" name="exRegulation_list">
+    </wsdl:input>
+      <wsdl:output message="tns:exRegulation_listResponse" name="exRegulation_listResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BankPolicyWebServiceImplServiceSoapBinding" type="tns:BankPolicyService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="inRegulation_getById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inRegulation_getById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inRegulation_getByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inRegulation_list">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inRegulation_list">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inRegulation_listResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_count">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="exRegulation_count">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="exRegulation_countResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inRegulation_count">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inRegulation_count">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inRegulation_countResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="helloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_getById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="exRegulation_getById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="exRegulation_getByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exRegulation_list">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="exRegulation_list">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="exRegulation_listResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BankPolicyWebServiceImplService">
+    <wsdl:port binding="tns:BankPolicyWebServiceImplServiceSoapBinding" name="BankPolicyWebServiceImplPort">
+      <soap:address location="http://localhost:3456/services/ws/api"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

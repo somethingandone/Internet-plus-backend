@@ -7,4 +7,5 @@ import java.util.List;
 public interface InRegulationService{
     void save(InRegulation inRegulation);
     List<InRegulation> findAll();
+    int count(InRegulation inRegulation);
 }
