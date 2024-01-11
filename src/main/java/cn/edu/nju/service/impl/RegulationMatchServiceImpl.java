@@ -128,12 +128,13 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
         //TODO checked @胡国栋 分词并获取关键词及其tfidf得分 建议和下面的getWordFrequency抽象一个分词函数
         Map<String, Float> keywords = new HashMap<>();
         Map<String, Integer> wordCount = VSMUtil.wordCount(title+text);
+        float totalWords = wordCount.size();
         wordCount.forEach((word,cnt)->{
             WordIdf wordIdf = wordIdfMapper.getIdf(word);
             if(Objects.isNull(wordIdf)){
                 keywords.put(word, 0f);
             }else{
-                keywords.put(word, cnt*wordIdf.getIdf());
+                keywords.put(word, (cnt/totalWords)*wordIdf.getIdf());
             }
         });
         List<Pair<String, Float>> keywordsVec;
@@ -224,7 +225,7 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
         //计算每一个exKeyword在 inRegulationSplit中的词频
         //inRegulationSplit中 _words项已经完成分词操作
         Map<String, Integer> inWordFrequency = VSMUtil.wordCount(inRegulationSplit.getItemContent());
-
+        float totalInWord = inWordFrequency.size();
         //外规的词向量
         ArrayList<Float> exVector = new ArrayList<>();
         //内规的词向量
@@ -235,7 +236,7 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
             if(!inWordFrequency.containsKey(pair.getLeft())){
                 inVector.add(0f);
             }else{
-                float tf = inWordFrequency.get(pair.getLeft());
+                float tf = inWordFrequency.get(pair.getLeft())/totalInWord;
                 WordIdf wordIdf = idfDict.get(pair.getLeft());
                 if(!Objects.isNull(wordIdf)){
                     inVector.add(tf*wordIdf.getIdf());
