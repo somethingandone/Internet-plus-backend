@@ -3,12 +3,15 @@ package cn.edu.nju.service.impl;
 import cn.edu.nju.dao.InRegulationSplitDao;
 import cn.edu.nju.dao.WordIdfMapper;
 import cn.edu.nju.model.InRegulationSplit;
+import cn.edu.nju.model.User;
 import cn.edu.nju.model.VO.InRegulationMatchVO;
 import cn.edu.nju.model.VO.MatchItem;
 import cn.edu.nju.model.VO.RegulationRetrievalVO;
 import cn.edu.nju.model.WordIdf;
 import cn.edu.nju.service.RegulationMatchService;
+import cn.edu.nju.utils.RedisCache;
 import cn.edu.nju.utils.VSMUtil;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +19,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,6 +35,9 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
     @Autowired
     private InRegulationSplitDao inRegulationSplitDao;
 
+    @Autowired
+    private RedisCache redisCache;
+
     @Resource
     private WordIdfMapper wordIdfMapper;
 
@@ -42,6 +49,8 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
     @Value("${match.resultLimit}")
     public int resultLimit;
 
+    private Map<String, WordIdf> idfDict;
+
     static final float d = 0.85f;
     /**
      * 最大迭代次数
@@ -51,6 +60,15 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @PostConstruct
+    private void init(){
+        this.idfDict = new HashMap<>();
+        List<WordIdf> wordIdfList = wordIdfMapper.selectAll();
+        this.idfDict = wordIdfList.stream().collect(Collectors.toMap(WordIdf::getWord, wordIdf -> wordIdf));
+    }
+
+
     /**
      * retrieval
      * 匹配一段文本，并返回待匹配结果的列表
@@ -218,7 +236,7 @@ public class RegulationMatchServiceImpl implements RegulationMatchService {
                 inVector.add(0f);
             }else{
                 float tf = inWordFrequency.get(pair.getLeft());
-                WordIdf wordIdf = wordIdfMapper.getIdf(pair.getLeft());
+                WordIdf wordIdf = idfDict.get(pair.getLeft());
                 if(!Objects.isNull(wordIdf)){
                     inVector.add(tf*wordIdf.getIdf());
                 }else{
