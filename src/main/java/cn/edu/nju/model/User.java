@@ -38,6 +38,8 @@ public class User implements Serializable {
     @Column(name = "ip_addr")
     private String ipAddr;
 
-    private Integer coin;
+//    private Integer coin;
+    @Column(name = "level")
+    private Integer level;
 
 }
