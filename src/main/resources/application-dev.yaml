@@ -2,21 +2,21 @@ spring:
   data:
     #mongoDB
     mongodb:
-      uri: mongodb://some:123456@121.36.55.63:27017/risk
-
-
+      host: 127.0.0.1
+      database: risk
+      port: 27017
   datasource:
-    url: jdbc:mysql://121.36.55.63:3306/internet?useSSL=false
-    username: Internet
-    password: 123456
+    url: jdbc:mysql://localhost:3306/user?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456Aa
     driver-class-name: com.mysql.jdbc.Driver
 
   redis:
     #数据库索引
     database: 0
-    host: 121.36.55.63
+    host: 127.0.0.1
     port: 6379
-    password: 123
+    password:
     jedis:
       pool:
         #最大连接数
